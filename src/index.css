@@ -1,24 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* CSS Custom Properties */
 :root {
-  --white: #FFFFFF;
-  --tan-1: #FBF9F6;
-  --tan-2: #E7E2DD;
-  --tan-3: #E2D9D1;
-  --tan-4: #D3C1AE;
-  --orange: #F67F00;
+  --white: #ffffff;
+  --tan-1: #fbf9f6;
+  --tan-2: #e7e2dd;
+  --tan-3: #e2d9d1;
+  --tan-4: #d3c1ae;
+  --orange: #f67f00;
   --text-light: #968c84;
   --text-dark: #615954;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--tan-4);
@@ -27,7 +32,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -71,9 +76,9 @@ code {
   align-items: center;
   background-color: var(--tan-1);
   color: var(--text-dark);
-  border: .1vmin solid var(--tan-3);
+  border: 0.1vmin solid var(--tan-3);
   border-radius: 1vmin;
-  padding: .6vmin;
+  padding: 0.6vmin;
   text-align: center;
   font-size: 2vmin;
 }
@@ -81,7 +86,7 @@ code {
 .form-container {
   padding: 3vmin;
   background-color: var(--tan-1);
-  border: .1vmin solid var(--tan-3);
+  border: 0.1vmin solid var(--tan-3);
   border-radius: 1vmin;
 }
 
@@ -106,8 +111,8 @@ label {
 input {
   padding: 1vmin;
   font-size: 2vmin;
-  border: .1vmin solid var(--tan-3);
-  border-radius: .5vmin;
+  border: 0.1vmin solid var(--tan-3);
+  border-radius: 0.5vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
   outline: none;
@@ -117,7 +122,8 @@ input:focus {
   border-color: var(--orange);
 }
 
-button, a.button {
+button,
+a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
@@ -126,23 +132,24 @@ button, a.button {
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  border: .1vmin solid var(--tan-2);
-  border-radius: .5vmin;
+  border: 0.1vmin solid var(--tan-2);
+  border-radius: 0.5vmin;
   outline: none;
   cursor: pointer;
 }
 
 button.btn-sm {
   font-size: 1.5vmin;
-  padding: .6vmin .8vmin;
+  padding: 0.6vmin 0.8vmin;
 }
 
 button.btn-xs {
   font-size: 1vmin;
-  padding: .4vmin .5vmin;
+  padding: 0.4vmin 0.5vmin;
 }
 
-button:disabled, form:invalid button[type="submit"] {
+button:disabled,
+form:invalid button[type="submit"] {
   cursor: not-allowed;
   background-color: var(--tan-4);
 }

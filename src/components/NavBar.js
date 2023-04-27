@@ -8,9 +8,26 @@ function NavBar({ user, setUser }) {
   };
   return (
     <nav>
-      <Link to="/orders">Order History</Link>
-      &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link> <span>Welcome, {user.name}</span>{" "}
+      <Link
+        to="/"
+        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
+      >
+        Home
+      </Link>
+      <Link
+        to="/trip/new"
+        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
+      >
+        Trip
+      </Link>
+      <Link
+        to="/cost"
+        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
+      >
+        Cost
+      </Link>
+      &nbsp; &nbsp;
+      <span>Welcome, {user.name}</span> &nbsp; | &nbsp;
       <Link to="" onClick={handleLogOut}>
         Logout
       </Link>
