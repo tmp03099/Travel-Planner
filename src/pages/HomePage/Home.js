@@ -6,6 +6,7 @@ function Home() {
       <div>
         <h1>Your Trip</h1>
       </div>
+
       <div>
         <button>
           <a href="trip/new">

@@ -2,16 +2,27 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import AddActivity from "../AddActivity/AddActivity";
 
 export default function AddTrip() {
-  const [value, setValue] = useState({
-    startDate: new Date(),
-    endDate: new Date().setMonth(11),
+  const [startDate, setStartDate] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
+  const [endDate, setEndDate] = useState({
+    startDate: null,
+    endDate: null,
   });
 
   const handleValueChange = (newValue) => {
     console.log("newValue:", newValue);
-    setValue(newValue);
+    setStartDate(newValue);
+  };
+
+  const handleEndValueChange = (newValue) => {
+    console.log("newValue:", newValue);
+    setEndDate(newValue);
   };
 
   const formik = useFormik({
@@ -33,17 +44,14 @@ export default function AddTrip() {
       <div>
         <h1>ADD TRIP</h1>
       </div>
-      <div>
+      <div className="flex justify-center">
         <form
-          className="flex flex-col w-full max-w-sm"
+          className="flex flex-col w-full justify-center max-w-sm"
           onSubmit={formik.handleSubmit}
         >
-          <div className="">
+          <div className="flex flex-col items-center">
             <div className="w-1/3">
-              <label
-                htmlFor="destination"
-                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-              >
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                 Destination
               </label>
             </div>
@@ -69,27 +77,40 @@ export default function AddTrip() {
           </div>
           <div className="flex flex-col items-center mb-6">
             <div className="w-1/3">
-              <label
-                htmlFor="startDate"
-                className="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-              >
-                DATE
+              <label className="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                START DATE
               </label>
             </div>
             <div className="w-2/3">
               <Datepicker
                 primaryColor={"lime"}
-                separator={"to"}
-                value={value}
+                asSingle={true}
+                useRange={false}
+                value={startDate}
                 onChange={handleValueChange}
-                showShortcuts={true}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-1/3">
+              <label className="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                END DATE
+              </label>
+            </div>
+            <div className="w-2/3">
+              <Datepicker
+                primaryColor={"lime"}
+                asSingle={true}
+                useRange={false}
+                value={endDate}
+                onChange={handleEndValueChange}
               />
             </div>
           </div>
           {/* loop the addactivities */}
           <div>
             <div>
-              <h3>Date 1</h3>
+              <h2>Activities</h2>
             </div>
             <div>
               <p>Date</p>
@@ -114,11 +135,12 @@ export default function AddTrip() {
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="submit"
               >
-                Add
+                <a href="trip/new/activities">Add</a>
               </button>
             </div>
           </div>
         </form>
+        <AddActivity />
       </div>
     </main>
   );
