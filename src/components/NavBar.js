@@ -20,12 +20,6 @@ function NavBar({ user, setUser }) {
       >
         Trip
       </Link>
-      <Link
-        to="/cost"
-        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
-      >
-        Cost
-      </Link>
       &nbsp; &nbsp;
       <span>Welcome, {user.name}</span> &nbsp; | &nbsp;
       <Link to="" onClick={handleLogOut}>

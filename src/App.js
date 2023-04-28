@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./pages/HomePage/Home";
 import NewTrip from "./pages/NewTripPage/NewTrip";
-import Cost from "./pages/CostPage/Cost";
 import AuthPage from "./pages/AuthPage";
 
 import { getUser } from "./utilities/users-service";
@@ -23,7 +22,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/trip/new" element={<NewTrip />} />
-            <Route path="/cost" element={<Cost />} />
           </Routes>
         </>
       ) : (
