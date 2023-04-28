@@ -3,7 +3,7 @@ import { IoIosAddCircle } from "react-icons/io";
 function Home() {
   return (
     <div>
-      <div className="bg-img"></div>
+      <div className=""></div>
       <div>
         <h1>Your Trip</h1>
       </div>

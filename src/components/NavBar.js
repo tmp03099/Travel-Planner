@@ -7,7 +7,7 @@ function NavBar({ user, setUser }) {
     setUser(null);
   };
   return (
-    <nav>
+    <nav className="bg-img">
       <Link
         to="/"
         className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
