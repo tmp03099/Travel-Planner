@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const tripsCtrl = require("../../controllers/api/trip");
+const tripsCtrl = require("../../controllers/api/trips");
 
 // GET /api/trip/new
-router.get("/trip/new", tripsCtrl.addTrip);
+router.get("/", tripsCtrl.getTrip);
+
+router.post("/new", tripsCtrl.addTrip);
 
 // POST /api/trip/
+module.exports = router;
