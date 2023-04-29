@@ -19,22 +19,28 @@ export default function AddTrip() {
     setStartDate(newValue);
   };
 
-  const handleEndValueChange = (newValue) => {
+  const handleValueEndDateChange = (newValue) => {
     console.log("newValue:", newValue);
     setEndDate(newValue);
   };
 
   const formik = useFormik({
     initialValues: {
+      name: "",
       destination: "",
+      startDate: Date.now(),
+      endDate: Date.now(),
     },
+
     validationSchema: Yup.object({
-      destination: Yup.string().min(2, "Too Short!").required("Required"),
-      Ddate: Yup.date().max(new Date()).required(),
+      name: Yup.string().min(2, "Too Short!").required("Required"),
+      destination: Yup.string()
+        .min(2, "Invalid destination")
+        .required("Required"),
+      startDate: Yup.date().max(new Date(), "Invalid date").required(),
     }),
     onSubmit: (values, { resetForm }) => {
       resetForm({ values: "" });
-      console.log(values);
       alert("Your successfully submit the form ");
     },
   });
@@ -44,14 +50,46 @@ export default function AddTrip() {
       <div>
         <h1>ADD TRIP</h1>
       </div>
-      <div className="flex justify-center">
+      <div>
         <form
-          className="flex flex-col w-full justify-center max-w-sm"
+          className="flex flex-col w-full max-w-md"
           onSubmit={formik.handleSubmit}
         >
           <div className="flex flex-col items-center">
             <div className="w-1/3">
-              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label
+                htmlFor="name"
+                className="block text-gray-500 font-bold pr-4"
+              >
+                Name
+              </label>
+            </div>
+            <div className="w-2/3">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+                className={
+                  "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 " +
+                  (formik.touched.name && formik.errors.name
+                    ? "border-red-500"
+                    : null)
+                }
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <div style={{ color: "red" }}>{formik.errors.name}</div>
+              ) : null}
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-1/3">
+              <label
+                htmlFor="destination"
+                className="block text-gray-500 font-bold"
+              >
                 Destination
               </label>
             </div>
@@ -59,7 +97,7 @@ export default function AddTrip() {
               <input
                 id="destination"
                 name="destination"
-                type="text"
+                type="destination"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.destination}
@@ -75,14 +113,18 @@ export default function AddTrip() {
               ) : null}
             </div>
           </div>
-          <div className="flex flex-col items-center mb-6">
+          <div className="flex flex-col items-center">
             <div className="w-1/3">
-              <label className="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                START DATE
+              <label
+                htmlFor="startDate"
+                className="block text-gray-500 font-bold"
+              >
+                startDate
               </label>
             </div>
             <div className="w-2/3">
               <Datepicker
+                id="startDate"
                 primaryColor={"lime"}
                 asSingle={true}
                 useRange={false}
@@ -91,23 +133,26 @@ export default function AddTrip() {
               />
             </div>
           </div>
-          <div className="flex flex-col items-center mb-6">
+          <div className="flex flex-col items-center">
             <div className="w-1/3">
-              <label className="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                END DATE
+              <label
+                htmlFor="endDate"
+                className="block text-gray-500 font-bold  "
+              >
+                endDate
               </label>
             </div>
             <div className="w-2/3">
               <Datepicker
+                id="endDate"
                 primaryColor={"lime"}
                 asSingle={true}
                 useRange={false}
                 value={endDate}
-                onChange={handleEndValueChange}
+                onChange={handleValueEndDateChange}
               />
             </div>
           </div>
-          {/* loop the addactivities */}
           <div>
             <div>
               <h2>Activities</h2>
@@ -127,15 +172,7 @@ export default function AddTrip() {
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="submit"
               >
-                Save
-              </button>
-            </div>
-            <div className="w-2/3">
-              <button
-                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                type="submit"
-              >
-                <a href="trip/new/activities">Add</a>
+                Submit
               </button>
             </div>
           </div>
