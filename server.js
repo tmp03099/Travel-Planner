@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path"); // node module
 const favicon = require("serve-favicon");
 const logger = require("morgan");
+const ensureLoggedIn = require("./config/ensureLoggedIn");
 
 const app = express();
 // development port: 3001
@@ -24,7 +25,7 @@ app.use(require("./config/checkToken"));
 
 // * All other routes
 app.use("/api/users", require("./routes/api/users"));
-app.use("/api/trips", require("./routes/api/trips"));
+app.use("/api/trips", ensureLoggedIn, require("./routes/api/trips"));
 
 // Put API routes here, before the "catch all" route
 // The following "catch all" route (note the *) is necessary

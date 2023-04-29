@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-import AddActivity from "../AddActivity/AddActivity";
 
 export default function AddTrip() {
   const [startDate, setStartDate] = useState({
@@ -35,6 +34,7 @@ export default function AddTrip() {
     }),
     onSubmit: (values, { resetForm }) => {
       resetForm({ values: "" });
+      console.log(values);
       alert("Your successfully submit the form ");
     },
   });
@@ -140,7 +140,6 @@ export default function AddTrip() {
             </div>
           </div>
         </form>
-        <AddActivity />
       </div>
     </main>
   );

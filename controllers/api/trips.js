@@ -1,4 +1,5 @@
 const Trip = require("../../models/tripSchema");
+const jwt = require("jsonwebtoken");
 
 async function getTrip(req, res) {
   console.log("get trip");
@@ -15,6 +16,11 @@ async function addTrip(req, res) {
   console.log("add trip");
   try {
     const trip = await Trip.create(req.body);
+
+    //* creating a new jwt
+    const token = createJWT(user);
+
+    res.json(token);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
