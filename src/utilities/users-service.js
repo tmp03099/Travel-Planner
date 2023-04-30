@@ -4,7 +4,6 @@
 
 //* handleSubmit <--> [signUp]-users-service <--> [signUp]-users-api <-Internet-> server.js (Express)
 
-import { sendRequest } from "./helper-api";
 import * as usersApi from "./users-api";
 
 //* Get Token

@@ -20,7 +20,7 @@ function Home() {
         <h1>Your Trip</h1>
       </div>
       {trips.map((trip, idx) => {
-        return <p key={idx}>{trip}</p>;
+        return <p key={idx}>{trip.name}</p>;
       })}
       <div>
         <button>

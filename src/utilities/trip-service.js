@@ -9,6 +9,6 @@ export async function getTrips() {
   return result;
 }
 
-export function createTrip(tripData) {
-  return sendRequest(`${TRIP_URL}/new`, "POST", tripData);
+export async function createTrip(tripData) {
+  return await sendRequest(`${TRIP_URL}/new`, "POST", tripData);
 }

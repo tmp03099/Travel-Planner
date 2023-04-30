@@ -2,8 +2,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import { useNavigate } from "react-router-dom";
+import { createTrip } from "../../utilities/trip-service";
 
 export default function AddTrip() {
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState({
     startDate: null,
     endDate: null,
@@ -37,11 +40,14 @@ export default function AddTrip() {
       destination: Yup.string()
         .min(2, "Invalid destination")
         .required("Required"),
-      startDate: Yup.date().max(new Date(), "Invalid date").required(),
+      // startDate: Yup.date().max(new Date(), "Invalid date").required(),
     }),
     onSubmit: (values, { resetForm }) => {
       resetForm({ values: "" });
+      console.log(values);
+      createTrip(values);
       alert("Your successfully submit the form ");
+      navigate("/");
     },
   });
 

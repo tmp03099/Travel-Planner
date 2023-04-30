@@ -1,4 +1,5 @@
-const Schema = require("mongoose").Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const User = require("./user");
 
@@ -30,4 +31,4 @@ const tripSchema = new Schema(
   }
 );
 
-module.exports = tripSchema;
+module.exports = mongoose.model("Trip", tripSchema);

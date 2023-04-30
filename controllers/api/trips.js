@@ -4,8 +4,11 @@ const jwt = require("jsonwebtoken");
 async function getTrip(req, res) {
   console.log("get trip");
   try {
-    const trip = await Trip.get();
-    res.json({ trips: ["test trip from server"] });
+    console.log(req.user);
+    const trips = await Trip.find({ user: req.user });
+    console.log(trips);
+
+    res.json({ trips: trips });
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -14,13 +17,15 @@ async function getTrip(req, res) {
 // Add a new Trip
 async function addTrip(req, res) {
   console.log("add trip");
+  console.log(req.body);
   try {
-    const trip = await Trip.create(req.body);
+    const newTrip = req.body;
+    newTrip.user = req.user;
+    console.log(newTrip);
 
-    //* creating a new jwt
-    const token = createJWT(user);
+    const trip = await Trip.create(newTrip);
 
-    res.json(token);
+    res.status(201);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
