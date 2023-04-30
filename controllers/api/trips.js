@@ -23,9 +23,22 @@ async function addTrip(req, res) {
     newTrip.user = req.user;
     console.log(newTrip);
 
-    const trip = await Trip.create(newTrip);
+    await Trip.create(newTrip);
 
-    res.status(201);
+    res.sendStatus(201);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+}
+
+async function deleteTrip(req, res) {
+  console.log("delete trip");
+  console.log(req.params.id);
+
+  try {
+    await Trip.findByIdAndDelete(req.params.id);
+
+    res.sendStatus(204);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -34,4 +47,5 @@ async function addTrip(req, res) {
 module.exports = {
   getTrip,
   addTrip,
+  deleteTrip,
 };

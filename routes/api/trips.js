@@ -7,5 +7,7 @@ router.get("/", tripsCtrl.getTrip);
 
 router.post("/new", tripsCtrl.addTrip);
 
+router.delete("/:id", tripsCtrl.deleteTrip);
+
 // POST /api/trip/
 module.exports = router;

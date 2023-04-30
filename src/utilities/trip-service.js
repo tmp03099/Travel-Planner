@@ -9,6 +9,10 @@ export async function getTrips() {
   return result;
 }
 
+export async function deleteTrip(id) {
+  return await sendRequest(`${TRIP_URL}/${id}`, "DELETE");
+}
+
 export async function createTrip(tripData) {
   return await sendRequest(`${TRIP_URL}/new`, "POST", tripData);
 }
