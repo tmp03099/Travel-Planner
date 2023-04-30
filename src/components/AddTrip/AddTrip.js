@@ -53,9 +53,6 @@ export default function AddTrip({ tripData }) {
   return (
     <main>
       <div>
-        <h1>ADD TRIP</h1>
-      </div>
-      <div>
         <form
           className="flex flex-col w-full max-w-md"
           onSubmit={formik.handleSubmit}
@@ -131,18 +128,6 @@ export default function AddTrip({ tripData }) {
                 value={date}
                 onChange={handleValueChange}
               />
-            </div>
-          </div>
-          <div>
-            <div>
-              <h2>Activities</h2>
-            </div>
-            <div>
-              <p>Date</p>
-              <p>Time</p>
-              <p>Activities</p>
-              <p>Name and URL</p>
-              <p>Note</p>
             </div>
           </div>
 
