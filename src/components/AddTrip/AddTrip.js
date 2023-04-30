@@ -1,30 +1,18 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { useNavigate } from "react-router-dom";
 import { createTrip } from "../../utilities/trip-service";
 
-export default function AddTrip() {
+export default function AddTrip({ tripData }) {
   const navigate = useNavigate();
-  const [startDate, setStartDate] = useState({
-    startDate: null,
-    endDate: null,
-  });
 
-  const [endDate, setEndDate] = useState({
-    startDate: null,
-    endDate: null,
-  });
+  const [date, setDate] = useState({});
 
   const handleValueChange = (newValue) => {
     console.log("newValue:", newValue);
-    setStartDate(newValue);
-  };
-
-  const handleValueEndDateChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setEndDate(newValue);
+    setDate(newValue);
   };
 
   const formik = useFormik({
@@ -50,6 +38,17 @@ export default function AddTrip() {
       navigate("/");
     },
   });
+
+  useEffect(() => {
+    console.log(tripData);
+    if (tripData.name) {
+      formik.setValues(tripData);
+      setDate({
+        startDate: tripData.startDate,
+        endDate: tripData.endDate,
+      });
+    }
+  }, [tripData]);
 
   return (
     <main>
@@ -121,41 +120,16 @@ export default function AddTrip() {
           </div>
           <div className="flex flex-col items-center">
             <div className="w-1/3">
-              <label
-                htmlFor="startDate"
-                className="block text-gray-500 font-bold"
-              >
-                startDate
+              <label htmlFor="date" className="block text-gray-500 font-bold">
+                Date
               </label>
             </div>
             <div className="w-2/3">
               <Datepicker
-                id="startDate"
+                id="date"
                 primaryColor={"lime"}
-                asSingle={true}
-                useRange={false}
-                value={startDate}
+                value={date}
                 onChange={handleValueChange}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-1/3">
-              <label
-                htmlFor="endDate"
-                className="block text-gray-500 font-bold  "
-              >
-                endDate
-              </label>
-            </div>
-            <div className="w-2/3">
-              <Datepicker
-                id="endDate"
-                primaryColor={"lime"}
-                asSingle={true}
-                useRange={false}
-                value={endDate}
-                onChange={handleValueEndDateChange}
               />
             </div>
           </div>

@@ -1,14 +1,27 @@
 const Trip = require("../../models/tripSchema");
 const jwt = require("jsonwebtoken");
 
-async function getTrip(req, res) {
-  console.log("get trip");
+async function getAllTrips(req, res) {
+  console.log("get all trip");
   try {
     console.log(req.user);
     const trips = await Trip.find({ user: req.user });
     console.log(trips);
 
     res.json({ trips: trips });
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+}
+
+async function getTrip(req, res) {
+  console.log("get trip");
+
+  try {
+    const trip = await Trip.findById(req.params.id);
+    console.log(trip);
+
+    res.json(trip);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -45,6 +58,7 @@ async function deleteTrip(req, res) {
 }
 
 module.exports = {
+  getAllTrips,
   getTrip,
   addTrip,
   deleteTrip,
