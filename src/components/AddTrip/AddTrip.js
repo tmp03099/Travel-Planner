@@ -5,7 +5,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 import { useNavigate } from "react-router-dom";
 import { createTrip } from "../../utilities/trip-service";
 
-export default function AddTrip({ tripData }) {
+export default function AddTrip({ tripData, setTripData }) {
   const navigate = useNavigate();
 
   const [date, setDate] = useState({});
@@ -48,7 +48,17 @@ export default function AddTrip({ tripData }) {
         endDate: tripData.endDate,
       });
     }
-  }, [tripData]);
+  }, [tripData._id]);
+
+  useEffect(() => {
+    setTripData({
+      ...tripData,
+      name: formik.values.name,
+      destination: formik.values.destination,
+      startDate: date.startDate,
+      endDate: date.endDate,
+    });
+  }, [date, formik.values.name, formik.values.destination]);
 
   return (
     <main>

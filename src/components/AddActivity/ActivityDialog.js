@@ -5,11 +5,11 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { React, Fragment, useState } from "react";
+import { React, Fragment, useState, useEffect } from "react";
 import Select from "react-dropdown-select";
 
-function ActivityDialog({ date }) {
-  console.log("date ne", date);
+function ActivityDialog({ dateOptions }) {
+  console.log("date ne", dateOptions);
   const [open, setOpen] = useState(false);
 
   const [type, setType] = useState([]);
@@ -19,24 +19,19 @@ function ActivityDialog({ date }) {
   const options = [
     {
       value: 1,
-      label: "Leanne Graham",
+      label: "Type 1",
     },
     {
       value: 2,
-      label: "Ervin Howell",
-    },
-  ];
-
-  const dateOptions = [
-    {
-      value: 1,
-      label: "date to string",
+      label: "Type 2",
     },
   ];
 
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {}, [dateOptions]);
 
   return (
     <Fragment>
@@ -66,6 +61,7 @@ function ActivityDialog({ date }) {
             <div className="w-2/3">
               <Select
                 options={dateOptions}
+                value={dateActivity}
                 onChange={(date) => setDateActivity(date)}
               />
             </div>
