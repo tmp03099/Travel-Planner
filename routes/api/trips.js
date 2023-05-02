@@ -11,5 +11,7 @@ router.get("/:id", tripsCtrl.getTrip);
 
 router.delete("/:id", tripsCtrl.deleteTrip);
 
+router.put("/:id", tripsCtrl.updateTrip);
+
 // POST /api/trip/
 module.exports = router;

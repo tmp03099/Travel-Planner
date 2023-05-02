@@ -1,6 +1,11 @@
-const Schema = require("mongoose").Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const activity = new Schema({
+const activitySchema = new Schema({
+  type: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -10,7 +15,7 @@ const activity = new Schema({
     type: String,
     required: true,
   },
-  startDate: {
+  date: {
     type: Date,
   },
   notes: {
@@ -21,4 +26,4 @@ const activity = new Schema({
   },
 });
 
-module.exports = activity;
+module.exports = mongoose.model("Activity", activitySchema);
