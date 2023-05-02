@@ -8,6 +8,7 @@ router.get("/", tripsCtrl.getAllTrips);
 router.post("/new", tripsCtrl.addTrip);
 
 router.get("/:id", tripsCtrl.getTrip);
+
 router.delete("/:id", tripsCtrl.deleteTrip);
 
 // POST /api/trip/

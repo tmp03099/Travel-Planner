@@ -28,7 +28,6 @@ export default function AddTrip({ tripData, setTripData }) {
       destination: Yup.string()
         .min(2, "Invalid destination")
         .required("Required"),
-      // startDate: Yup.date().max(new Date(), "Invalid date").required(),
     }),
     onSubmit: (values, { resetForm }) => {
       resetForm({ values: "" });

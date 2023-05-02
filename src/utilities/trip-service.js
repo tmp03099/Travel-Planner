@@ -13,8 +13,8 @@ export async function getTrip(id) {
   return await sendRequest(`${TRIP_URL}/${id}`);
 }
 
-export async function updateTrip(id, tripData) {
-  return await sendRequest(`${TRIP_URL}/${id}`, "PUT", tripData);
+export async function updateTrip(tripData) {
+  return await sendRequest(`${TRIP_URL}/${tripData._id}`, "PUT", tripData);
 }
 
 export async function deleteTrip(id) {
