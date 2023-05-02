@@ -66,7 +66,7 @@ async function updateTrip(req, res) {
 
     // await Trip.findByIdAndUpdate(req.params.id, req.body);
 
-    res.sendStatus(204);
+    res.json(trip);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }

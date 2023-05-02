@@ -43,13 +43,14 @@ export default function AddTrip({ tripData, setTripData }) {
     if (tripData.name) {
       formik.setValues(tripData);
       setDate({
-        startDate: tripData.startDate,
-        endDate: tripData.endDate,
+        startDate: new Date(tripData.startDate),
+        endDate: new Date(tripData.endDate),
       });
     }
   }, [tripData._id]);
 
   useEffect(() => {
+    console.log(date);
     setTripData({
       ...tripData,
       name: formik.values.name,
@@ -140,7 +141,7 @@ export default function AddTrip({ tripData, setTripData }) {
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
+          {/* <div className="flex items-center justify-center">
             <div className="w-2/3">
               <button
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
@@ -149,7 +150,7 @@ export default function AddTrip({ tripData, setTripData }) {
                 Submit
               </button>
             </div>
-          </div>
+          </div> */}
         </form>
       </div>
     </main>

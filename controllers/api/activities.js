@@ -14,6 +14,8 @@ async function addActivity(req, res) {
   try {
     const activity = await Activity.create(req.body);
 
+    console.log(activity);
+
     res.status(201).json(activity);
   } catch (e) {
     res.status(400).json({ msg: e.message });
@@ -24,7 +26,7 @@ async function updateActivity(req, res) {
   try {
     const activity = await Activity.findByIdAndUpdate(req.params.id, req.body);
 
-    res.status(201).json(activity);
+    res.json(activity);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }

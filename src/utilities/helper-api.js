@@ -23,11 +23,7 @@ export async function sendRequest(url, method = "GET", payload = null) {
   // res.ok will be false if the status code set to 4xx in the controller action
 
   if (res.ok) {
-    if (res.status === 200) {
-      return res.json();
-    } else {
-      return;
-    }
+    return res.json();
   } else {
     throw new Error("Bad Request");
   }

@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { React, Fragment, useState, useEffect } from "react";
 import Select from "react-dropdown-select";
+import { createActivity } from "../../utilities/activity-service";
 
 function ActivityDialog({ dateOptions, activities, setActivities }) {
   console.log("date ne", dateOptions);
@@ -37,8 +38,10 @@ function ActivityDialog({ dateOptions, activities, setActivities }) {
     setOpen(!open);
   };
 
-  const onAddClick = () => {
-    setActivities([...activities, activity]);
+  const onAddClick = async () => {
+    const newActivity = await createActivity(activity);
+
+    setActivities([...activities, newActivity]);
     console.log(activity);
     setOpen(!open);
   };
