@@ -10,12 +10,12 @@ function NewTrip() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <div>
         <h1>New Trip</h1>
       </div>
       <AddTrip tripData={tripData} setTripData={setTripData} />
-      <div>
+      <div className="my-6">
         <Button variant="gradient" color="blue" onClick={onAddClick}>
           <span>Add</span>
         </Button>

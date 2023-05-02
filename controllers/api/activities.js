@@ -16,7 +16,7 @@ async function addActivity(req, res) {
 
     console.log(activity);
 
-    res.status(201).json(activity);
+    res.status(200).json(activity);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -36,7 +36,7 @@ async function deleteActivity(req, res) {
   try {
     await Activity.findByIdAndDelete(req.params.id);
 
-    res.status(204);
+    res.status(200);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }

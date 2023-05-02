@@ -102,42 +102,44 @@ function EditTrip() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center mt-6">
       <div>
         <h1>Edit Trip</h1>
       </div>
       <AddTrip tripData={trip} setTripData={setTrip} />
-      <div>
-        {foodList().length > 0 ? <h1>Food List</h1> : ""}
-        {foodList().map((activity) => {
-          return (
-            <div
-              key={activity._id}
-              className="flex flex-column gap-2 justify-center"
-            >
-              <div>{activity.name}</div>
-              <div>{activity.destination}</div>
-              <div>{getDateString(activity.date)}</div>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        {activityList().length > 0 ? <h1>Activity List</h1> : ""}
-        {activityList().map((activity) => {
-          return (
-            <div
-              key={activity._id}
-              className="flex flex-column gap-2 justify-center"
-            >
-              <div>{activity.name}</div>
-              <div>{activity.destination}</div>
-              <div>{getDateString(activity.date)}</div>
-            </div>
-          );
-        })}
-      </div>
-      <div>
+      <div className="my-6`">
+        <div className="my-6">
+          {foodList().length > 0 ? (
+            <h1 className="text-lg text-left text-green-400">Food List</h1>
+          ) : (
+            ""
+          )}
+          {foodList().map((activity) => {
+            return (
+              <div key={activity._id} className="flex flex-column gap-2">
+                <div>{activity.name}</div>
+                <div>{activity.destination}</div>
+                <div>{getDateString(activity.date)}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="my-6">
+          {activityList().length > 0 ? <h1>Activity List</h1> : ""}
+          {activityList().map((activity) => {
+            return (
+              <div
+                key={activity._id}
+                className="flex flex-column gap-2 justify-center"
+              >
+                <div>{activity.name}</div>
+                <div>{activity.destination}</div>
+                <div>{getDateString(activity.date)}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="my-6"></div>
         {attractionList().length > 0 ? <h1>Attraction List</h1> : ""}
         {attractionList().map((activity) => {
           return (

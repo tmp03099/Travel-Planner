@@ -1,5 +1,4 @@
 const Trip = require("../../models/tripSchema");
-const jwt = require("jsonwebtoken");
 
 async function getAllTrips(req, res) {
   console.log("get all trip");
@@ -21,7 +20,7 @@ async function getTrip(req, res) {
     const trip = await Trip.findById(req.params.id);
     console.log(trip);
 
-    res.json(trip);
+    res.status(200).json(trip);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -38,7 +37,8 @@ async function addTrip(req, res) {
 
     const trip = await Trip.create(newTrip);
 
-    res.sendStatus(201).json(trip);
+    // res.sendStatus(201).json(trip);
+    res.status(200).json(trip);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -51,7 +51,8 @@ async function deleteTrip(req, res) {
   try {
     await Trip.findByIdAndDelete(req.params.id);
 
-    res.sendStatus(204);
+    // res.sendStatus(204);
+    res.status(200);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
@@ -66,7 +67,7 @@ async function updateTrip(req, res) {
 
     // await Trip.findByIdAndUpdate(req.params.id, req.body);
 
-    res.json(trip);
+    res.status(200).json(trip);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
