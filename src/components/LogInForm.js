@@ -1,50 +1,61 @@
-import { useState } from 'react';
-import {login} from '../utilities/users-service';
+import { useState } from "react";
+import { login } from "../utilities/users-service";
 
 export default function LoginForm({ setUser }) {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-const [credentials, setCredentials] = useState({
-  email: '',
-  password: ''
-});
+  const [error, setError] = useState("");
 
-const [error, setError] = useState('');
-
-function handleChange(evt) {
-  setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-  setError('');
-}
-
-async function handleSubmit(evt) {
-  // Prevent form from being submitted to the server
-  evt.preventDefault();
-  try {
-    // The promise returned by the signUp service method
-    // will resolve to the user object included in the
-    // payload of the JSON Web Token (JWT)
-    const user = await login(credentials);
-    console.log(user);
-    setUser(user);
-  } catch {
-    setError('Log In Failed - Try Again');
+  function handleChange(evt) {
+    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
+    setError("");
   }
-}
 
-return (
-  <div>
-    <div className="form-container" onSubmit={handleSubmit}>
+  async function handleSubmit(evt) {
+    // Prevent form from being submitted to the server
+    evt.preventDefault();
+    try {
+      // The promise returned by the signUp service method
+      // will resolve to the user object included in the
+      // payload of the JSON Web Token (JWT)
+      const user = await login(credentials);
+      console.log(user);
+      setUser(user);
+    } catch {
+      setError("Log In Failed - Try Again");
+    }
+  }
 
-      <form autoComplete="off" >
-        <label>Email</label>
-        <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+  return (
+    <div>
+      <div className="form-container" onSubmit={handleSubmit}>
+        <form autoComplete="off">
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
+            required
+          />
 
-        <label>Password</label>
-        <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-        <button type="submit">LOG IN</button>
-      </form>
-
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" className="border border-gray-400 rounded-sm">
+            LOG IN
+          </button>
+        </form>
+      </div>
+      <p className="error-message">&nbsp;{error}</p>
     </div>
-    <p className="error-message">&nbsp;{error}</p>
-  </div>
-);
+  );
 }

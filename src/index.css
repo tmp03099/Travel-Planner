@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-img {
+  background-image: url("https://wallpaperaccess.com/full/185289.jpg");
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+}
+
 /* CSS Custom Properties */
 :root {
   --white: #ffffff;
@@ -9,7 +19,7 @@
   --tan-2: #e7e2dd;
   --tan-3: #e2d9d1;
   --tan-4: #d3c1ae;
-  --orange: #418ace;
+  --orange: #ce8c41;
   --text-light: #968c84;
   --text-dark: #615954;
 }
@@ -27,7 +37,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
+  background-color: #0f192a;
+  color: whitesmoke;
   padding: 2vmin;
   height: 100vh;
 }

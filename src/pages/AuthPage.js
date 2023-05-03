@@ -7,10 +7,10 @@ function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <main className="AuthPage">
-      <h1>Auth Page</h1>
+    <main className="h-full rounded-md">
+      <h1 className="my-5 text-center cursor-pointer">Auth Page</h1>
 
-      <button onClick={() => setShowLogin(!showLogin)}>
+      <button onClick={() => setShowLogin(!showLogin)} className="mb-3">
         {showLogin ? "Sign up" : "Sign in"}
       </button>
 
