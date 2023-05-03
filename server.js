@@ -23,6 +23,12 @@ app.use(express.static(path.join(__dirname, "build")));
 // checks if token was sent and sets a user data on the req (req.user)
 app.use(require("./config/checkToken"));
 
+app.use(
+  cors({
+    origin: ["https://https://travel-planner-2yih.onrender.com/"],
+  })
+);
+
 // * All other routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/trips", ensureLoggedIn, require("./routes/api/trips"));
