@@ -2,20 +2,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-import { useNavigate } from "react-router-dom";
-import { createTrip } from "../../utilities/trip-service";
 
 export default function AddTrip({ tripData, setTripData }) {
-  const navigate = useNavigate();
+  const [init, setInit] = useState(false);
 
-  const [date, setDate] = useState({});
-
-  const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setDate(newValue);
-  };
-
-  const formik = useFormik({
+  const { setValues, ...formik } = useFormik({
     initialValues: {
       name: "",
       destination: "",
@@ -31,34 +22,20 @@ export default function AddTrip({ tripData, setTripData }) {
     }),
     onSubmit: (values, { resetForm }) => {
       resetForm({ values: "" });
-      console.log(values);
-      createTrip(values);
       alert("Your successfully submit the form ");
-      navigate("/");
     },
   });
 
   useEffect(() => {
-    console.log(tripData);
-    if (tripData.name) {
-      formik.setValues(tripData);
-      setDate({
-        startDate: new Date(tripData.startDate),
-        endDate: new Date(tripData.endDate),
-      });
-    }
-  }, [tripData._id]);
+    console.log(init, tripData);
+    if (!init) {
+      if (tripData.name) {
+        setValues(tripData);
 
-  useEffect(() => {
-    console.log(date);
-    setTripData({
-      ...tripData,
-      name: formik.values.name,
-      destination: formik.values.destination,
-      startDate: date.startDate,
-      endDate: date.endDate,
-    });
-  }, [date, formik.values.name, formik.values.destination]);
+        setInit(true);
+      }
+    }
+  }, [tripData, setValues, init]);
 
   return (
     <div className="flex w-1/2">
@@ -77,7 +54,10 @@ export default function AddTrip({ tripData, setTripData }) {
               id="name"
               name="name"
               type="text"
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                setTripData({ ...tripData, name: e.target.value });
+                formik.handleChange(e);
+              }}
               onBlur={formik.handleBlur}
               value={formik.values.name}
               className={
@@ -106,7 +86,10 @@ export default function AddTrip({ tripData, setTripData }) {
               id="destination"
               name="destination"
               type="destination"
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                setTripData({ ...tripData, destination: e.target.value });
+                formik.handleChange(e);
+              }}
               onBlur={formik.handleBlur}
               value={formik.values.destination}
               className={
@@ -131,22 +114,20 @@ export default function AddTrip({ tripData, setTripData }) {
             <Datepicker
               id="date"
               primaryColor={"lime"}
-              value={date}
-              onChange={handleValueChange}
+              value={{
+                startDate: formik.values.startDate,
+                endDate: formik.values.endDate,
+              }}
+              onChange={(value) => {
+                setTripData({
+                  ...tripData,
+                  startDate: value.startDate,
+                  endDate: value.endDate,
+                });
+              }}
             />
           </div>
         </div>
-
-        {/* <div className="flex items-center justify-center">
-            <div className="w-2/3">
-              <button
-                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                type="submit"
-              >
-                Submit
-              </button>
-            </div>
-          </div> */}
       </form>
     </div>
   );

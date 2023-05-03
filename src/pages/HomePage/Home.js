@@ -29,11 +29,11 @@ function Home() {
         {trips.map((trip, idx) => {
           return (
             <div
-              className="grid grid-cols-12 justify-center items-center border border-2 rounded-lg px-2 py-5 w-1/2"
+              className="grid grid-cols-12 justify-center items-center border border-2 rounded-lg px-2 py-5 w-2/5"
               key={idx}
             >
               <div
-                className="col-start-4 col-span-2 text-xl"
+                className="col-start-5 col-span-2 text-xl"
                 onClick={() => {
                   navigate(`trip/${trip._id}`);
                 }}
@@ -41,7 +41,7 @@ function Home() {
                 {trip.name}
               </div>
               <button
-                className="col-start-11 col-span-"
+                className="col-start-10 col-span-"
                 onClick={async () => {
                   await deleteTrip(trip._id);
                   await loadTrips();

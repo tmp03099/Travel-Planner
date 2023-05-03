@@ -1,12 +1,18 @@
 import { useState } from "react";
 import AddTrip from "../../components/AddTrip/AddTrip";
 import { Button } from "@material-tailwind/react";
+import { createTrip } from "../../utilities/trip-service";
+import { useNavigate } from "react-router-dom";
 
 function NewTrip() {
+  const navigate = useNavigate();
   const [tripData, setTripData] = useState({});
 
-  const onAddClick = () => {
+  const onAddClick = async () => {
+    await createTrip(tripData);
     console.log(tripData);
+
+    navigate("/");
   };
 
   return (

@@ -10,7 +10,6 @@ import Select from "react-dropdown-select";
 import { createActivity } from "../../utilities/activity-service";
 
 function ActivityDialog({ dateOptions, activities, setActivities }) {
-  console.log("date ne", dateOptions);
   const [open, setOpen] = useState(false);
 
   const [activity, setActivty] = useState({});

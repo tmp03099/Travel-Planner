@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import AddTrip from "../../components/AddTrip/AddTrip";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getTrip, updateTrip } from "../../utilities/trip-service";
 import ActivityDialog from "../../components/AddActivity/ActivityDialog";
 import { Button } from "@material-tailwind/react";
 import { getActivity } from "../../utilities/activity-service";
 
 function EditTrip() {
+  const navigate = useNavigate();
   const { tripId } = useParams();
 
   const [trip, setTrip] = useState({});
@@ -39,8 +40,13 @@ function EditTrip() {
     console.log(trip);
 
     await updateTrip(trip);
+
+    navigate("/");
   };
 
+  /**
+   * Update component when trip ID changed
+   */
   useEffect(() => {
     const loadTrip = async () => {
       const editTrip = await getTrip(tripId);
@@ -61,18 +67,27 @@ function EditTrip() {
     loadTrip();
   }, [tripId]);
 
+  /**
+   * Update component when trip changed
+   */
   useEffect(() => {
     updateDateOptions(trip.startDate, trip.endDate);
   }, [trip.startDate, trip.endDate]);
 
+  /**
+   * Handle when activity changed.
+   */
   useEffect(() => {
-    const activitiesIds = [];
+    const updateActivity = () => {
+      const activitiesIds = [];
 
-    activities.forEach((a) => {
-      activitiesIds.push(a._id);
-    });
+      activities.forEach((a) => {
+        activitiesIds.push(a._id);
+      });
 
-    setTrip({ ...trip, activities: activitiesIds });
+      setTrip((trip) => ({ ...trip, activities: activitiesIds }));
+    };
+    updateActivity();
   }, [activities]);
 
   /**
@@ -107,24 +122,26 @@ function EditTrip() {
         <h1>Edit Trip</h1>
       </div>
       <AddTrip tripData={trip} setTripData={setTrip} />
-      <div className="my-6`">
-        <div className="my-6">
+      <div className="my-6 flex flex-wrap justify-center gap-x-20">
+        <div className="border border-4 border-neutral-800 rounded-lg border-double p-5">
           {foodList().length > 0 ? (
-            <h1 className="text-lg text-left text-green-400">Food List</h1>
+            <h1 className="text-lg text-left text-green-400 border-zinc-900 border-b-2 mb-2 ">
+              Food List
+            </h1>
           ) : (
             ""
           )}
           {foodList().map((activity) => {
             return (
-              <div key={activity._id} className="flex flex-column gap-2">
+              <div key={activity._id} className="text-left ">
                 <div>{activity.name}</div>
-                <div>{activity.destination}</div>
-                <div>{getDateString(activity.date)}</div>
+                <div>Where: {activity.destination}</div>
+                <div>Time: {getDateString(activity.date)}</div>
               </div>
             );
           })}
         </div>
-        <div className="my-6">
+        <div className="">
           {activityList().length > 0 ? <h1>Activity List</h1> : ""}
           {activityList().map((activity) => {
             return (
@@ -139,7 +156,7 @@ function EditTrip() {
             );
           })}
         </div>
-        <div className="my-6"></div>
+        <div className=""></div>
         {attractionList().length > 0 ? <h1>Attraction List</h1> : ""}
         {attractionList().map((activity) => {
           return (
