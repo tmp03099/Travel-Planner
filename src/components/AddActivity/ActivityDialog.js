@@ -5,7 +5,7 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { React, Fragment, useState, useEffect } from "react";
+import { React, Fragment, useState } from "react";
 import Select from "react-dropdown-select";
 import { createActivity } from "../../utilities/activity-service";
 
