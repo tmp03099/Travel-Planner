@@ -9,11 +9,12 @@ function Home() {
 
   const [trips, setTrips] = useState([]);
 
-  async function loadTrips() {
+  const loadTrips = async () => {
+    console.log("load trips");
     const result = await getTrips();
     console.log(result.trips);
     setTrips(result.trips);
-  }
+  };
 
   useEffect(() => {
     loadTrips();

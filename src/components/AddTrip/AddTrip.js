@@ -115,8 +115,8 @@ export default function AddTrip({ tripData, setTripData }) {
               id="date"
               primaryColor={"lime"}
               value={{
-                startDate: formik.values.startDate,
-                endDate: formik.values.endDate,
+                startDate: tripData.startDate,
+                endDate: tripData.endDate,
               }}
               onChange={(value) => {
                 setTripData({

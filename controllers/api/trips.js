@@ -37,7 +37,6 @@ async function addTrip(req, res) {
 
     const trip = await Trip.create(newTrip);
 
-    // res.sendStatus(201).json(trip);
     res.status(200).json(trip);
   } catch (e) {
     res.status(400).json({ msg: e.message });
@@ -51,8 +50,7 @@ async function deleteTrip(req, res) {
   try {
     await Trip.findByIdAndDelete(req.params.id);
 
-    // res.sendStatus(204);
-    res.status(200);
+    res.status(200).json({});
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
