@@ -5,6 +5,7 @@ const path = require("path"); // node module
 const favicon = require("serve-favicon");
 const logger = require("morgan");
 const ensureLoggedIn = require("./config/ensureLoggedIn");
+const cors = require("cors");
 
 const app = express();
 // development port: 3001
@@ -25,7 +26,7 @@ app.use(require("./config/checkToken"));
 
 app.use(
   cors({
-    origin: ["https://https://travel-planner-2yih.onrender.com/"],
+    origin: ["https://travel-planner-2yih.onrender.com/"],
   })
 );
 
