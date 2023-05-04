@@ -21,20 +21,20 @@ function Home() {
   }, []);
 
   return (
-    <div className="mt-5">
-      <h1 className="text-md md:text-4xl font-bold text-lime-800">
-        Your Trips
+    <div className="mt-8">
+      <h1 className="text-md md:text-4xl font-bold text-yellow-400 ">
+        YOUR TRIPS
       </h1>
 
-      <div className="grid my-5 justify-items-center">
+      <div className="grid my-8 justify-items-center">
         {trips.map((trip, idx) => {
           return (
             <div
-              className="grid grid-cols-12 justify-center items-center border border-2 rounded-lg px-2 py-5 w-2/5"
+              className="grid grid-cols-12 justify-center items-center border border-2 rounded-2xl px-2 py-5 w-2/5 my-3"
               key={idx}
             >
               <div
-                className="col-start-5 col-span-2 text-xl"
+                className="col-start-3 col-span-5 text-xl"
                 onClick={() => {
                   navigate(`trip/${trip._id}`);
                 }}
@@ -42,13 +42,13 @@ function Home() {
                 {trip.name}
               </div>
               <button
-                className="col-start-10 col-span-"
+                className="col-start-11 col-span-"
                 onClick={async () => {
                   await deleteTrip(trip._id);
                   await loadTrips();
                 }}
               >
-                <AiFillMinusCircle />
+                <AiFillMinusCircle className="text-xl" />
               </button>
             </div>
           );
@@ -57,7 +57,7 @@ function Home() {
       <div>
         <button>
           <a href="trip/new">
-            <IoIosAddCircle />
+            <IoIosAddCircle className="text-5xl text-yellow-400" />
           </a>
         </button>
       </div>

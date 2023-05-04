@@ -17,9 +17,10 @@ function NewTrip() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div>
-        <h1>New Trip</h1>
-      </div>
+      <h1 className="text-md md:text-4xl font-bold text-yellow-400 mt-10 ">
+        New Trip
+      </h1>
+
       <AddTrip tripData={tripData} setTripData={setTripData} />
       <div className="my-6">
         <Button variant="gradient" color="blue" onClick={onAddClick}>

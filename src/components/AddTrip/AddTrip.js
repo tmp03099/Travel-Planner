@@ -6,6 +6,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 export default function AddTrip({ tripData, setTripData }) {
   const [init, setInit] = useState(false);
 
+  // validate formik form
   const { setValues, ...formik } = useFormik({
     initialValues: {
       name: "",
@@ -28,23 +29,24 @@ export default function AddTrip({ tripData, setTripData }) {
 
   useEffect(() => {
     console.log(init, tripData);
+    //initalize first value of formik (to fix error run many times)
     if (!init) {
+      //load the existing data value for edit trip
       if (tripData.name) {
         setValues(tripData);
-
         setInit(true);
       }
     }
   }, [tripData, setValues, init]);
 
   return (
-    <div className="flex w-1/2">
+    <div className="flex w-1/2 mt-12">
       <form className="flex flex-col w-full " onSubmit={formik.handleSubmit}>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col">
           <div className="w-1/3">
             <label
               htmlFor="name"
-              className="block text-gray-500 font-bold pr-4"
+              className="block text-green-500 font-bold pr-4 text-left"
             >
               Name
             </label>
@@ -55,6 +57,7 @@ export default function AddTrip({ tripData, setTripData }) {
               name="name"
               type="text"
               onChange={(e) => {
+                //update name
                 setTripData({ ...tripData, name: e.target.value });
                 formik.handleChange(e);
               }}
@@ -72,11 +75,11 @@ export default function AddTrip({ tripData, setTripData }) {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col">
           <div className="w-1/3">
             <label
               htmlFor="destination"
-              className="block text-gray-500 font-bold"
+              className="block text-green-500 font-bold text-left"
             >
               Destination
             </label>
@@ -87,6 +90,7 @@ export default function AddTrip({ tripData, setTripData }) {
               name="destination"
               type="destination"
               onChange={(e) => {
+                //update destination
                 setTripData({ ...tripData, destination: e.target.value });
                 formik.handleChange(e);
               }}
@@ -104,13 +108,16 @@ export default function AddTrip({ tripData, setTripData }) {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col">
           <div className="w-1/3">
-            <label htmlFor="date" className="block text-gray-500 font-bold">
+            <label
+              htmlFor="date"
+              className="block text-green-500 font-bold text-left"
+            >
               Date
             </label>
           </div>
-          <div className="w-full">
+          <div className="w-full ">
             <Datepicker
               id="date"
               primaryColor={"lime"}
@@ -119,6 +126,7 @@ export default function AddTrip({ tripData, setTripData }) {
                 endDate: tripData.endDate,
               }}
               onChange={(value) => {
+                //update date
                 setTripData({
                   ...tripData,
                   startDate: value.startDate,

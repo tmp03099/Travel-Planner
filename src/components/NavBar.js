@@ -7,22 +7,23 @@ function NavBar({ user, setUser }) {
     setUser(null);
   };
   return (
-    <nav className="bg-img">
+    <nav className="bg-img py-3">
       <Link
         to="/"
-        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
+        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 px-5 text-sm font-medium m-4"
       >
         Home
       </Link>
       <Link
         to="/trip/new"
-        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium m-4"
+        className="bg-gray-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 px-5 text-sm font-medium m-4"
       >
-        Trip
+        New Trip
       </Link>
       &nbsp; &nbsp;
-      <span>Welcome, {user.name}</span> &nbsp; | &nbsp;
-      <Link to="" onClick={handleLogOut}>
+      <span className="text-pink-600 font-bold">Welcome, {user.name}</span>{" "}
+      &nbsp; | &nbsp;
+      <Link to="" onClick={handleLogOut} className="text-pink-600 font-bold">
         Logout
       </Link>
     </nav>
