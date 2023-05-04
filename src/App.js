@@ -29,6 +29,9 @@ function App() {
       ) : (
         <AuthPage setUser={setUser} />
       )}
+      <div className="footer">
+        <span>© My Phung Tieu</span>
+      </div>
     </main>
   );
 }

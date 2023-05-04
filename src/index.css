@@ -12,6 +12,14 @@
   background-size: cover;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #615954;
+}
+
 /* CSS Custom Properties */
 :root {
   --white: #ffffff;

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getTrip, updateTrip } from "../../utilities/trip-service";
 import ActivityDialog from "../../components/AddActivity/ActivityDialog";
 import { Button } from "@material-tailwind/react";
-import { getActivity } from "../../utilities/activity-service";
+import { deleteActivity, getActivity } from "../../utilities/activity-service";
 import { AiFillMinusCircle } from "react-icons/ai";
 
 function EditTrip() {
@@ -142,7 +142,13 @@ function EditTrip() {
                     <div>{activity.name}</div>
                     <div>Where: {activity.destination}</div>
                     <div>Time: {getDateString(activity.date)}</div>
-                    <button className="text-center">
+                    <button
+                      onClick={async () => {
+                        await deleteActivity(activity._id);
+                        activities.splice(activities.indexOf(activity), 1);
+                        setActivities([...activities]);
+                      }}
+                    >
                       <AiFillMinusCircle />
                     </button>
                   </div>
@@ -165,7 +171,13 @@ function EditTrip() {
                     <div>{activity.name}</div>
                     <div>{activity.destination}</div>
                     <div>{getDateString(activity.date)}</div>
-                    <button>
+                    <button
+                      onClick={async () => {
+                        await deleteActivity(activity._id);
+                        activities.splice(activities.indexOf(activity), 1);
+                        setActivities([...activities]);
+                      }}
+                    >
                       <AiFillMinusCircle />
                     </button>
                   </div>
@@ -188,7 +200,13 @@ function EditTrip() {
                     <div>{activity.name}</div>
                     <div>{activity.destination}</div>
                     <div>{getDateString(activity.date)}</div>
-                    <button>
+                    <button
+                      onClick={async () => {
+                        await deleteActivity(activity._id);
+                        activities.splice(activities.indexOf(activity), 1);
+                        setActivities([...activities]);
+                      }}
+                    >
                       <AiFillMinusCircle />
                     </button>
                   </div>
