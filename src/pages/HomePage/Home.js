@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillMinusCircle } from "react-icons/ai";
+import { RiEditCircleFill } from "react-icons/ri";
 import { getTrips, deleteTrip } from "../../utilities/trip-service";
 import { useNavigate } from "react-router-dom";
 
@@ -35,12 +36,20 @@ function Home() {
             >
               <div
                 className="col-start-3 col-span-5 text-xl"
+                // onClick={() => {
+                //   navigate(`trip/${trip._id}`);
+                // }}
+              >
+                {trip.name}
+              </div>
+              <button
+                className="col-start-10 col-span"
                 onClick={() => {
                   navigate(`trip/${trip._id}`);
                 }}
               >
-                {trip.name}
-              </div>
+                <RiEditCircleFill className="text-xl" />
+              </button>
               <button
                 className="col-start-11 col-span-"
                 onClick={async () => {
