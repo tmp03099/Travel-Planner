@@ -18,7 +18,7 @@ function NewTrip() {
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="text-md md:text-4xl font-bold text-yellow-400 mt-10 ">
-        New Trip
+        NEW TRIP
       </h1>
 
       <AddTrip tripData={tripData} setTripData={setTripData} />

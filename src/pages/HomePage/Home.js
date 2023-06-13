@@ -36,9 +36,9 @@ function Home() {
             >
               <div
                 className="col-start-3 col-span-5 text-xl"
-                // onClick={() => {
-                //   navigate(`trip/${trip._id}`);
-                // }}
+                onClick={() => {
+                  navigate(`trip/display/${trip._id}`);
+                }}
               >
                 {trip.name}
               </div>

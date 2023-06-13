@@ -11,6 +11,7 @@ import AuthPage from "./pages/AuthPage";
 import { getUser } from "./utilities/users-service";
 
 import "./App.css";
+import DisplayTrip from "./pages/DisplayTripPage/DisplayTrip";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/trip/new" element={<NewTrip />} />
+            <Route path="/trip/display/:tripId" element={<DisplayTrip />} />
             <Route path="/trip/:tripId" element={<EditTrip />} />
           </Routes>
         </>
